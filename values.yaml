@@ -1,17 +1,17 @@
 # Default values for central-framework.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+nameOverride: ""
+fullnameOverride: ""
 
 replicaCount: 1
 image:
-  repository: test
+  repository: REPLACEME_IMAGE_NAME
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  # tag: "dev.fa358eebabed898ed6d9c603e092dfac358a3347"
+  # tag: "v1"
  
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
