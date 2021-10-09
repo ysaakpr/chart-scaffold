@@ -6,7 +6,7 @@ fullnameOverride: ""
 
 replicaCount: 1
 image:
-  repository: REPLACEME_IMAGE_NAME
+  repository: INJECT_IMAGE_URI
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   # tag: "v1"
