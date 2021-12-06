@@ -53,14 +53,14 @@ gateway:
   timeout_ms: 0
   idle_timeout_ms: 0
   grpc: true
-  routes:
-    filter:
-      prefix: /route1/
-      rewrite: /route1/
-    stream:
-      port:
-      rewrite: /route2/
-      prefix: /route2/
+  routes: {}
+  #  filter:
+  #    prefix: /route1/
+  #    rewrite: /route1/
+  #  stream:
+  #    port:
+  #    rewrite: /route2/
+  #    prefix: /route2/
 
 ingress:
   enabled: false
