@@ -45,6 +45,12 @@ service:
   - name: http
     port: 80
     appPort: 8050
+
+migrations:
+  enabled: false
+  # image: otherimages
+  # command: ["app"]
+  args: ["migrate", "up"]
   
 #Ambassador gateway mappings
 gateway:
