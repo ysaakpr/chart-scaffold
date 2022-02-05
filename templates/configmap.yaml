@@ -5,6 +5,8 @@ metadata:
   name: {{ include "+( .AppName ).fullname" . }}
   labels:
     {{- include "+( .AppName ).labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
 data:
   {{ range $k,$v := .Values.configFiles.files -}}
   {{- if eq "string" (printf "%T" $v ) -}}
