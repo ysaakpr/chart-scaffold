@@ -111,3 +111,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+configFiles:
+  enabled: false
+  mountPath: /etc/app
+  files: {}
+
+

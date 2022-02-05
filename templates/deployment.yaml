@@ -79,6 +79,12 @@ spec:
           #    port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+          {{- if .Values.configFiles.enabled }}
+          - name: configfiles
+            mountPath: {{ .Values.configFiles.mountPath }}
+            readOnly: true
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -90,4 +96,10 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+      {{- if .Values.configFiles.enabled }}
+      - name: configfiles
+        configMap:
+          name: {{ include "+( .AppName ).fullname" . }}
       {{- end }}

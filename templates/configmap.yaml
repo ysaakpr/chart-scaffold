@@ -1,0 +1,18 @@
+{{- if .Values.configFiles.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "+( .AppName ).fullname" . }}
+  labels:
+    {{- include "+( .AppName ).labels" . | nindent 4 }}
+data:
+  {{ range $k,$v := .Values.configFiles.files -}}
+  {{- if eq "string" (printf "%T" $v ) -}}
+  {{ $k }}: |-
+    {{- $v  | nindent 4 }}
+  {{- else -}}
+  {{ $k }}: |-
+    {{- toYaml $v | nindent 4 }}
+  {{- end }}
+  {{- end }}
+{{- end }}
