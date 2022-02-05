@@ -35,4 +35,16 @@ spec:
         - name: {{ $k }}
           value: "{{ $v }}"
         {{- end }}
+        volumeMounts:
+          {{- if .Values.configFiles.enabled }}
+          - name: configfiles
+            mountPath: {{ .Values.configFiles.mountPath }}
+            readOnly: true
+          {{- end }}
+      volumes:
+      {{- if .Values.configFiles.enabled }}
+      - name: configfiles
+        configMap:
+          name: {{ include "+( .AppName ).fullname" . }}
+      {{- end }}
 {{- end }}
