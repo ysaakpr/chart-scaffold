@@ -8,7 +8,7 @@
 {{- $defPort := coalesce $.Values.service.port $firstPorts.port }}
 {{- $port := coalesce $v.port $.Values.gateway.port $.Values.service.port $firstPorts.port $defPort }}
 {{- $servicehost :=   cat $fullName ":" $port | nospace }}
-{{- $def := dict "service" $servicehost "host" $.Values.gateway.host  "timeout_ms" $.Values.gateway.timeout_ms "idle_timeout_ms" $.Values.gateway.idle_timeout_ms "grpc" $.Values.gateway.grpc }}
+{{- $def := dict "ambassador_id" $.Values.gateway.ambassador_id "service" $servicehost "host" $.Values.gateway.host  "timeout_ms" $.Values.gateway.timeout_ms "idle_timeout_ms" $.Values.gateway.idle_timeout_ms "grpc" $.Values.gateway.grpc }}
 {{- $n := mustDeepCopy $def }}
 {{- $newdict := mustDeepCopy $v | mustMergeOverwrite $n}}
 {{- $useDict := omit $newdict "port"}}
