@@ -13,7 +13,7 @@
 {{- $newdict := mustDeepCopy $v | mustMergeOverwrite $n}}
 {{- $useDict := omit $newdict "port"}}
 ---
-apiVersion: getambassador.io/v3alpha1
+apiVersion: getambassador.io/v2
 kind:  Mapping
 metadata:
   name:  {{ $fullName }}-{{ $k }}
