@@ -10,6 +10,10 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   # tag: "v1"
+
+entrypoint: {}
+  # command: ["test2"]
+  # args: ["test"]
  
 imagePullSecrets: []
 
