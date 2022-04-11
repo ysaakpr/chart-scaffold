@@ -125,3 +125,24 @@ configFiles:
   files: {}
 
 
+livenessProbe: {}
+  # httpGet:
+  #   path: /healthz
+  #   port: liveness-port
+  # failureThreshold: 1
+  # periodSeconds: 10
+
+startupProbe: {}
+  # httpGet:
+  #   path: /healthz
+  #   port: liveness-port
+  # failureThreshold: 30
+  # periodSeconds: 10
+
+readinessProbe: {}
+  # exec:
+  #   command:
+  #   - cat
+  #   - /tmp/healthy
+  # initialDelaySeconds: 5
+  # periodSeconds: 5
