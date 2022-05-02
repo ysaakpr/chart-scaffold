@@ -6,6 +6,14 @@ Expand the name of the chart.
 {{- end }}
 
 {{/*
+Expand the job names in the chart.
+*/}}
+{{- define "+( .AppName ).jobname" -}}
+{{- $name := default .Chart.Name .Values.nameOverride }}
+{{- printf "%s-jobs" $name | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
@@ -36,6 +44,19 @@ Common labels
 {{- define "+( .AppName ).labels" -}}
 helm.sh/chart: {{ include "+( .AppName ).chart" . }}
 {{ include "+( .AppName ).selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Common labels
+*/}}
+{{- define "+( .AppName ).joblabels" -}}
+helm.sh/chart: {{ include "+( .AppName ).chart" . }}
+app.kubernetes.io/name: {{ include "+( .AppName ).jobname" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
