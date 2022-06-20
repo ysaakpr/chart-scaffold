@@ -10,10 +10,10 @@ metadata:
 data:
   {{ range $k,$v := .Values.configFiles.files -}}
   {{- if eq "string" (printf "%T" $v ) -}}
-  {{ $k }}: |-
-    {{- $v  | nindent 4 }}
+  {{- $k | nindent 2 }}: |-
+    {{- $v | nindent 4 -}}
   {{- else -}}
-  {{ $k }}: |-
+  {{- $k | nindent 2 }}: |-
     {{- toYaml $v | nindent 4 }}
   {{- end }}
   {{- end }}
